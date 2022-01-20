@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {FileInput} from "./fileInput";
+import {FileInput} from "./FileInput";
 import {Chart} from "./Chart";
 
 const App = () => {
