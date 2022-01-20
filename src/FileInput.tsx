@@ -1,4 +1,6 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
+import {Button} from "@mui/material";
+
 
 export const FileInput: React.FC<{
     setData: (data: object) => void,
@@ -13,6 +15,10 @@ export const FileInput: React.FC<{
         setData(JSON.parse(await file.text()));
     };
     return <div>
-        <input type="file" name="file" onChange={handleFileChange} accept=".json"/>
+        <Button variant="contained" style={{textTransform: 'none'}} component="label">
+            Upload JSON
+            <input hidden type="file" name="file" onChange={handleFileChange} accept=".json"/>
+        </Button>
+
     </div>
 }
