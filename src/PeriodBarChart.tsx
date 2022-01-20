@@ -1,28 +1,31 @@
 import React from "react";
 import {ResponsiveContainer, BarChart, XAxis, CartesianGrid, Tooltip, Legend, Bar, YAxis} from "recharts";
 
-
-type ChartElement = {
-    month: string,
+type ChartData = {
+    period: string,
     msgCount: number,
-}
+}[]
 
-const createChartData = (rawData: any): ChartElement[] => {
+const generateDateChartData = (rawData: any, periodFilter: (date: string) => string): ChartData => {
     const tempData: { [k: string]: number } = {}
     rawData.messages.forEach((m: any) => {
-        const day = m.date?.substring(0, 7)
-        tempData[day] = tempData[day] === undefined ? 1 : tempData[day] + 1
+        const period = periodFilter(m.date)
+        tempData[period] = tempData[period] === undefined ? 1 : tempData[period] + 1
     })
     return Object.keys(tempData)
         .sort()
         .map(k => ({
-            month: k,
+            period: k,
             msgCount: tempData[k]
         }))
-
 }
-export const DateChart: React.FC<{ rawData: object }> = ({rawData}) => {
-    const data = createChartData(rawData)
+
+export const PeriodBarChart: React.FC<{
+    rawData: object,
+    color: string,
+    periodFilter: (date: string) => string
+}> = ({rawData, color, periodFilter}) => {
+    const data = generateDateChartData(rawData, periodFilter)
     return <ResponsiveContainer width="100%" height={500}>
         <BarChart
             width={1200}
@@ -32,15 +35,15 @@ export const DateChart: React.FC<{ rawData: object }> = ({rawData}) => {
                 top: 60,
                 right: 30,
                 left: 20,
-                bottom: 5,
+                bottom: 25,
             }}
         >
             <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="month"/>
+            <XAxis dataKey="period"/>
             <YAxis/>
             <Tooltip/>
-            <Legend/>
-            <Bar name={'Message count'} dataKey="msgCount" fill="#8884d8"/>
+            <Legend wrapperStyle={{ position: 'relative' }}/>
+            <Bar name={'Message count'} dataKey="msgCount" fill={color}/>
         </BarChart>
     </ResponsiveContainer>
 }

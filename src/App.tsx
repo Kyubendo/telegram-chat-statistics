@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {FileInput} from "./FileInput";
 import {Charts} from "./Charts";
+import {CentralLoader} from "./CentralLoader";
 
 const App = () => {
     const [data, setData] = useState<object>();
@@ -14,7 +15,7 @@ const App = () => {
         <div>
             {
                 fileChosen ?
-                    data ? <Charts data={data}/> : 'Loading...'
+                    data ? <Charts data={data}/> : <CentralLoader/>
                     : ''
             }
         </div>

@@ -1,9 +1,13 @@
 .c {
     display: flex;
-    width:100%;
+    width: 100%;
     justify-content: center;
 }
 
-p{
+p {
     text-align: center;
+}
+
+body {
+    background-color: #eee;
 }
