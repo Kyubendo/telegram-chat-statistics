@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/telegram-chat-statistics/static/css/main.e6c13ad2.css",
-    "main.js": "/telegram-chat-statistics/static/js/main.2a1e7486.js",
+    "main.css": "/telegram-chat-statistics/static/css/main.95876487.css",
+    "main.js": "/telegram-chat-statistics/static/js/main.40c39917.js",
     "index.html": "/telegram-chat-statistics/index.html",
-    "main.e6c13ad2.css.map": "/telegram-chat-statistics/static/css/main.e6c13ad2.css.map",
-    "main.2a1e7486.js.map": "/telegram-chat-statistics/static/js/main.2a1e7486.js.map"
+    "main.95876487.css.map": "/telegram-chat-statistics/static/css/main.95876487.css.map",
+    "main.40c39917.js.map": "/telegram-chat-statistics/static/js/main.40c39917.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.2a1e7486.js"
+    "static/css/main.95876487.css",
+    "static/js/main.40c39917.js"
   ]
 }
