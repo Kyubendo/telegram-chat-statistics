@@ -1,31 +1,13 @@
 import React from "react";
 import {ResponsiveContainer, BarChart, XAxis, CartesianGrid, Tooltip, Legend, Bar, YAxis} from "recharts";
-
-type ChartData = {
-    period: string,
-    msgCount: number,
-}[]
-
-const generateDateChartData = (rawData: any, periodFilter: (date: string) => string): ChartData => {
-    const tempData: { [k: string]: number } = {}
-    rawData.messages.forEach((m: any) => {
-        const period = periodFilter(m.date)
-        tempData[period] = tempData[period] === undefined ? 1 : tempData[period] + 1
-    })
-    return Object.keys(tempData)
-        .sort()
-        .map(k => ({
-            period: k,
-            msgCount: tempData[k]
-        }))
-}
+import {aggregateMessages} from "./Utils/aggregateMessages";
 
 export const PeriodBarChart: React.FC<{
     rawData: object,
     color: string,
-    periodFilter: (date: string) => string
+    periodFilter: (date: any) => string
 }> = ({rawData, color, periodFilter}) => {
-    const data = generateDateChartData(rawData, periodFilter)
+    const data = aggregateMessages(rawData, periodFilter)
     return <ResponsiveContainer width="100%" height={500}>
         <BarChart
             width={1200}
@@ -39,11 +21,11 @@ export const PeriodBarChart: React.FC<{
             }}
         >
             <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="period"/>
+            <XAxis dataKey="label"/>
             <YAxis/>
             <Tooltip/>
-            <Legend wrapperStyle={{ position: 'relative' }}/>
-            <Bar name={'Message count'} dataKey="msgCount" fill={color}/>
+            <Legend wrapperStyle={{position: 'relative'}}/>
+            <Bar name={'Message count'} dataKey="count" fill={color}/>
         </BarChart>
     </ResponsiveContainer>
 }

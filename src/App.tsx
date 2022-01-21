@@ -8,7 +8,7 @@ const App = () => {
     const [data, setData] = useState<object>();
     const [fileChosen, setFileChosen] = useState(false);
     return <div className="App">
-        <p>Export telegram chat history as JSON and upload it</p>
+        <p style={{textAlign: 'center'}}>Export telegram chat history as JSON and upload it</p>
         <div className='c'>
             <FileInput setData={setData} setFileChosen={setFileChosen}/>
         </div>
