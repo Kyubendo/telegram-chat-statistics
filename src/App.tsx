@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import {FileInput} from "./FileInput";
-import {Charts} from "./Charts";
+import {Layout} from "./Layout";
 import {CentralLoader} from "./CentralLoader";
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
         <div>
             {
                 fileChosen ?
-                    data ? <Charts data={data}/> : <CentralLoader/>
+                    data ? <Layout data={data}/> : <CentralLoader/>
                     : ''
             }
         </div>

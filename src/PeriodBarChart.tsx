@@ -8,7 +8,7 @@ export const PeriodBarChart: React.FC<{
     periodFilter: (date: any) => string
 }> = ({rawData, color, periodFilter}) => {
     const data = aggregateMessages(rawData, periodFilter)
-    return <ResponsiveContainer width="100%" height={500}>
+    return <ResponsiveContainer width="100%" height='85%'>
         <BarChart
             width={1200}
             height={500}
@@ -24,7 +24,6 @@ export const PeriodBarChart: React.FC<{
             <XAxis dataKey="label"/>
             <YAxis/>
             <Tooltip/>
-            <Legend wrapperStyle={{position: 'relative'}}/>
             <Bar name={'Message count'} dataKey="count" fill={color}/>
         </BarChart>
     </ResponsiveContainer>

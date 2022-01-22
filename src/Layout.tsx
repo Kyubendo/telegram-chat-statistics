@@ -3,15 +3,9 @@ import {PeriodBarChart} from "./PeriodBarChart";
 import {Box, Grid, Paper, styled} from "@mui/material";
 import {UserPieChart} from "./UserPieChart";
 import {TopEmojis} from "./TopEmojis";
+import {MessagesLength} from "./MessagesLenght";
 
 const Item = styled(Paper)(({theme}) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
-
-const Item2 = styled(Paper)(({theme}) => ({ // refactor
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
@@ -19,20 +13,28 @@ const Item2 = styled(Paper)(({theme}) => ({ // refactor
     color: theme.palette.text.secondary,
 }));
 
-export const Charts: React.FC<{ data: object }> = ({data}) => {
+
+
+export const Layout: React.FC<{ data: object }> = ({data}) => {
     return <Box m={4}>
         <Grid container spacing={3}>
             <Grid item xs={4}>
-                <Item2>
+                <Item>
                     <h2>Messages by user</h2>
                     <UserPieChart rawData={data}/>
-                </Item2>
+                </Item>
             </Grid>
-            <Grid item xs={4}>
-                <Item2>
+            <Grid item xs={2}>
+                <Item>
                     <h2>Top emojis</h2>
                     <TopEmojis rawData={data}/>
-                </Item2>
+                </Item>
+            </Grid>
+            <Grid item xs={6}>
+                <Item>
+                    <h2>Users by message length</h2>
+                    <MessagesLength rawData={data}/>
+                </Item>
             </Grid>
             <Grid item xs={12}>
                 <Item>
