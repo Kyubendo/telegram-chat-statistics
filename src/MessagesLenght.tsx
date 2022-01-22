@@ -17,8 +17,9 @@ const aggregateMessages = (rawData: any,): ChartData => {
     })
     let data = Object.keys(tempData)
     return data
+        .filter(k => tempData[k].msgCount > 9)
         .map(k => ({
-            label: k,
+            label: k.length > 14 ? k.substring(0, 11) + '...' : k,
             count: Math.floor(tempData[k].words * 100 / tempData[k].msgCount) / 100
         }))
         .sort((a, b) => b.count - a.count)
@@ -44,7 +45,9 @@ export const MessagesLength: React.FC<{ rawData: any }> = ({rawData}) => {
         >
             <CartesianGrid horizontal={false} strokeDasharray="3 3"/>
             <XAxis dataKey='count' type='number'/>
-            <YAxis type='category' dataKey="label"/>
+            <YAxis
+                tick={{width: 1000}}
+                type='category' dataKey="label"/>
             <Tooltip/>
             <Bar name={'Message length'} dataKey="count" fill={'#aaa'}>
                 {
