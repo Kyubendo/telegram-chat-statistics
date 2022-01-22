@@ -9,7 +9,8 @@ const aggregateMessages = (rawData: any): ChartData => {
             if (!msg.text.length) {
                 return
             }
-            getText(msg.text).match(/\p{Emoji_Presentation}|\p{Extended_Pictographic}/gu)
+            getText(msg.text)
+                .match(/\p{Emoji_Modifier_Base}\p{Emoji_Modifier}?|\p{Emoji_Presentation}|\p{Emoji}\uFE0F/gu)
                 ?.forEach((e: any) => tempData[e] = tempData[e] === undefined ? 1 : tempData[e] + 1)
         }
     )
